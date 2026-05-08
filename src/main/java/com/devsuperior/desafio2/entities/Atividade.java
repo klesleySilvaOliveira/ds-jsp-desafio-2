@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,9 +26,8 @@ public class Atividade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String nome;
+	@Column(columnDefinition = "TEXT")
 	private String descricao;
-	private Double preco;
 	
 	@ManyToMany
 	@JoinTable(name = "tb_atividade_participante",
@@ -41,6 +41,9 @@ public class Atividade {
 	
 	@OneToMany(mappedBy = "atividade")
 	private List<Bloco> blocos = new ArrayList<>();
+	
+	private String nome;
+	private Double preco;
 
 	public Atividade() {
 		super();
@@ -90,6 +93,30 @@ public class Atividade {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
+	public Set<Participante> getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipante(Participante participante) {
+		this.participantes.add(participante);
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Bloco> getBlocos() {
+		return blocos;
+	}
+
+	public void setBloco(Bloco bloco) {
+		this.blocos.add(bloco);
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -102,6 +129,5 @@ public class Atividade {
 		Atividade other = (Atividade) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 }

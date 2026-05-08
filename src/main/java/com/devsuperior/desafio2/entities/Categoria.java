@@ -19,10 +19,10 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String descricao;
-	
 	@OneToMany(mappedBy = "categoria")
 	private List<Atividade> atividades = new ArrayList<>();
+	
+	private String descricao;
 
 	public Categoria() {
 		super();
@@ -50,6 +50,14 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
+	public List<Atividade> getAtividades() {
+		return atividades;
+	}
+
+	public void setAtividade(Atividade atividade) {
+		this.atividades.add(atividade);
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -66,6 +74,5 @@ public class Categoria {
 		Categoria other = (Categoria) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 }
