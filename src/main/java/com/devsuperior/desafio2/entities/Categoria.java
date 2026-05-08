@@ -54,7 +54,7 @@ public class Categoria {
 		return atividades;
 	}
 
-	public void setAtividade(Atividade atividade) {
+	public void addAtividade(Atividade atividade) {
 		this.atividades.add(atividade);
 	}
 

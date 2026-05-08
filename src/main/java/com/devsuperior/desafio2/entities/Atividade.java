@@ -88,17 +88,12 @@ public class Atividade {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
 	
 	public Set<Participante> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipante(Participante participante) {
+	public void addParticipante(Participante participante) {
 		this.participantes.add(participante);
 	}
 
@@ -114,8 +109,13 @@ public class Atividade {
 		return blocos;
 	}
 
-	public void setBloco(Bloco bloco) {
+	public void addBloco(Bloco bloco) {
 		this.blocos.add(bloco);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 	@Override
